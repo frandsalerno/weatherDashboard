@@ -6,31 +6,6 @@ var city = 'London';
 var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 var forecastURL = `https://api.openweathermap.org/data/2.5/forecast&appid=${apiKey}`;
 
-
-
-// function handleResponse(responseObj) {
-//     var dataPromise = responseObj.json();
-//     return dataPromise;
-//   }
-  
-//   fetch(cityURL)
-//     .then(handleResponse)
-//     .then(function (currentData) {
-//       return fetch(foreCastURL + `&lat=${currentData.coord.lat}&lon=${currentData.coord.lon}`)
-//     }).then(handleResponse)
-//     .then(function(forecastData) {
-//       console.log(forecastData)
-//     });
-  
-//   var handleResponse = responseObj => responseObj.json();
-  
-//   fetch(cityURL)
-//     .then(handleResponse)
-//     .then(currentData => {
-//       console.log(currentData);
-//       return fetch(foreCastURL + `&lat=${currentData.coord.lat}&lon=${currentData.coord.lon}`).then(handleResponse);
-//     }).then(forecastData => console.log(forecastData));
-
 $.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
 .then(function(currentData){
     var lat= currentData.coord.lat;

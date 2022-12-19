@@ -7,15 +7,15 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="assets/css/resets.css" />
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style> @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap'); </style>
   <title>Weather Dashboard by @frandsalerno</title>
 </head>
 
 <body>
   <div class="grid">
     <header class="page-header">
-      <div class="content">
-        <p>Weather Dashboard</p>
-      </div>
+        <h1>Weather Dashboard</h1>
     </header>
     <aside class="page-leftbar">
       <div class="content">
@@ -49,7 +49,8 @@
     <main class="page-main">
       <div class="content">
         <div class="todays-weather">
-          <h2>London <span id="today">18/12/2022 <i></i></span></h2>
+          <h2>London <span id="today">18/12/2022</span></h2>
+          <img src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
           <p class="today-data">
             Temp: 13 C <br>
             Wind: 1.7 KPH<br>
@@ -58,50 +59,56 @@
         </div>
         <div class="forecast">
           <h3>5 days Forecast</h3>
-          <div class="daily-forecast">
-            <h4>19/12/2022</h4>
-            <i></i>
-            <p class="forecast-data">
-              Temp: 13 C <br>
-              Wind: 1.7 KPH<br>
-              Humidity: 84%
-            </p>
-          </div>
-          <div class="daily-forecast">
-            <h4>19/12/2022</h4>
-            <i></i>
-            <p class="forecast-data">
-              Temp: 13 C <br>
-              Wind: 1.7 KPH<br>
-              Humidity: 84%
-            </p>
-          </div>
-          <div class="daily-forecast">
-            <h4>19/12/2022</h4>
-            <i></i>
-            <p class="forecast-data">
-              Temp: 13 C <br>
-              Wind: 1.7 KPH<br>
-              Humidity: 84%
-            </p>
-          </div>
-          <div class="daily-forecast">
-            <h4>19/12/2022</h4>
-            <i></i>
-            <p class="forecast-data">
-              Temp: 13 C <br>
-              Wind: 1.7 KPH<br>
-              Humidity: 84%
-            </p>
-          </div>
-          <div class="daily-forecast">
-            <h4>19/12/2022</h4>
-            <i></i>
-            <p class="forecast-data">
-              Temp: 13 C <br>
-              Wind: 1.7 KPH<br>
-              Humidity: 84%
-            </p>
+          <div id="forecast-container">
+            <div class="daily-forecast">
+              <img src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
+              <h4>19/12/2022</h4>
+              <p class="forecast-data">
+                Temp: 13 C <br>
+                Wind: 1.7 KPH<br>
+                Humidity: 84%
+              </p>
+            </div>
+            <div class="daily-forecast">
+              <img src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
+              <h4>19/12/2022</h4>
+              <i></i>
+              <p class="forecast-data">
+                Temp: 13 C <br>
+                Wind: 1.7 KPH<br>
+                Humidity: 84%
+              </p>
+            </div>
+            <div class="daily-forecast">
+              <img src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
+              <h4>19/12/2022</h4>
+              <i></i>
+              <p class="forecast-data">
+                Temp: 13 C <br>
+                Wind: 1.7 KPH<br>
+                Humidity: 84%
+              </p>
+            </div>
+            <div class="daily-forecast">
+              <img src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
+              <h4>19/12/2022</h4>
+              <i></i>
+              <p class="forecast-data">
+                Temp: 13 C <br>
+                Wind: 1.7 KPH<br>
+                Humidity: 84%
+              </p>
+            </div>
+            <div class="daily-forecast">
+              <img src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
+              <h4>19/12/2022</h4>
+              <i></i>
+              <p class="forecast-data">
+                Temp: 13 C <br>
+                Wind: 1.7 KPH<br>
+                Humidity: 84%
+              </p>
+            </div>
           </div>
         </div>
       </div>

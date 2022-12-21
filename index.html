@@ -22,7 +22,7 @@
         <h2 class="side-bar">
           Search for a City:
         </h2>
-        <input type="text" placeholder="Insert a city's name">
+        <input id="city-search" type="text" placeholder="Insert a city's name">
         <button id="submit-city">Search</button>
         <ul class="search-history">
           <li class="city-explored">
@@ -49,8 +49,11 @@
     <main class="page-main">
       <div class="content">
         <div class="todays-weather">
-          <h2>London <span id="today">18/12/2022</span></h2>
-          <img src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
+          <div class="city-date-wrapper">
+            <h2>London</h2>
+            <h3 id="today">18/12/2022</h3>
+          </div>
+          <img class="today-wicon" src="" alt="">
           <p class="today-data">
             Temp: 13 C <br>
             Wind: 1.7 KPH<br>

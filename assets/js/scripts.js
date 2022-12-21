@@ -4,6 +4,9 @@ var searchInput = $('#city-search');
 
 var todayIcon = $('.today-wicon');
 var todayDate = $('#today');
+var todayTemp = $('.today-data .temp');
+var todayWind = $('.today-data .wind');
+var todayHumidity = $('.today-data .humidity');
 
 var city = '';
 var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -25,6 +28,10 @@ function fetchWeather(event){
             console.log(icon);
             todayCity.text(city);
             todayDate.text(moment().format('DD/MM/YY'));
+            todayTemp.text(`${Math.round(currentData.main.temp)} C°`);
+            todayWind.text(`${Math.round(currentData.wind.speed)*1.6} Km/H`);
+            todayHumidity.text(`${currentData.main.humidity}%`);
+
             $(todayIcon).attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`);  
             console.log(currentData);
             console.log(`

@@ -99,7 +99,7 @@ body {
   border-radius: 15px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   color: var(--secondary-color);
 }
 
@@ -116,7 +116,7 @@ body {
 .page-main #forecast-container{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .daily-forecast{

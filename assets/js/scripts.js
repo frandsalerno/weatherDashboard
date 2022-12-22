@@ -11,12 +11,19 @@ var todayHumidity = $('.today-data .humidity');
 var fiveDaysForecast = [];
 var forecastWrapper = $('#forecast-container');
 
+var searchHistory = $('.search-history');
+var localSearches = [];
+
 var city = '';
 var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 var forecastURL = `https://api.openweathermap.org/data/2.5/forecast&appid=${apiKey}`;
 
 var todayCity = $('.todays-weather h2');
 
+if (JSON.parse(localStorage.getItem('cities')) != null) {
+    localSearches = JSON.parse(localStorage.getItem('cities'));
+    
+}
 
 function fetchWeather(event){
     var keyCode = event.keyCode;
@@ -25,6 +32,17 @@ function fetchWeather(event){
     if (keyCode === 13){
         forecastWrapper.html('');
         city = searchInput.val().toUpperCase();
+        
+        if(!localSearches.includes(city)){
+            localSearches.push(city);
+            console.log(localSearches);
+            searchHistory.append(`
+            <li class="city-explored">${city}</li>
+            `)
+        }
+
+        localStorage.setItem('cities', JSON.stringify(localSearches));
+
         $.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
         .then(function(currentData){
             var lat= currentData.coord.lat;
@@ -50,20 +68,20 @@ function fetchWeather(event){
             .then(function(forecastData){
                 // console.log(forecastData.list);
                 fiveDaysForecast.push(forecastData.list);
-                console.log(fiveDaysForecast);
+                // console.log(fiveDaysForecast);
 
                 $(fiveDaysForecast[0]).each(function(i, day){
 
                     var dayTime = day.dt_txt;
 
                     // console.log(value.dt_txt);
-                    if(dayTime.includes('12:00')){
-                        console.log(day);
+                    if(dayTime.includes('15:00')){
+                        // console.log(day);
 
                         var forecastIco = day.weather[0].icon
                         var forecastDay = dayTime.split(' ');
                         var forecastDay = moment(forecastDay[0], 'YYYY MM DD').format('DD/MM/YY');
-                        console.log(forecastDay);
+                        // console.log(forecastDay);
                         var forecastTemp = day.main.temp;
                         var forecastWind = day.wind.speed;
                         var forecastHumidity= day.main.humidity;
@@ -74,7 +92,7 @@ function fetchWeather(event){
                         <img src="http://openweathermap.org/img/wn/${forecastIco}@2x.png">
                         <h4>${forecastDay}</h4>
                         <p class="forecast-data">
-                          Temp: ${forecastTemp} C <br>
+                          Temp: ${Math.round(forecastTemp)} C° <br>
                           Wind: ${Math.round((forecastWind)*1.6)} KPH<br>
                           Humidity: ${forecastHumidity}%
                         </p>

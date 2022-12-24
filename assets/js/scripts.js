@@ -33,10 +33,21 @@ if (JSON.parse(localStorage.getItem('cities')) != null) {
     weatherDashboard(localSearches[localSearches.length-1]);
 }
 
+
 function weatherDashboard(city){
 
     $.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+
+    .catch(function(event){
+        if(event.status == 404){
+            alert ('This City could not be found, please try another one');
+            
+        }
+        return;
+    })
+
     .then(function(currentData){
+        
         var lat= currentData.coord.lat;
         var lon= currentData.coord.lon;
         var icon = currentData.weather[0].icon;
@@ -99,6 +110,8 @@ function fetchWeather(event){
         forecastWrapper.html('');
         city = searchInput.val().toUpperCase();
         
+        weatherDashboard(city);
+        
         if(!localSearches.includes(city)){
             localSearches.push(city);
             console.log(localSearches);
@@ -109,7 +122,6 @@ function fetchWeather(event){
 
         localStorage.setItem('cities', JSON.stringify(localSearches));
 
-        weatherDashboard(city);
 
     }
 }

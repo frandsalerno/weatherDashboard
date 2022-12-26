@@ -13,6 +13,10 @@ body {
   color: var(--secondary-color);
 }
 
+.hide{
+  display: none !important;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 250px auto;
@@ -58,8 +62,12 @@ body {
   background: #f7f8ff;
   padding: 5px 12px;
   border-radius: 10px;
-  color: #adc8ff;
+  color: #9f9f9f;
   font-size: 14px;
+}
+
+.page-leftbar input::placeholder {
+  color: #adc8ff;
 }
 
 .page-leftbar #submit-city{
@@ -111,6 +119,26 @@ body {
 .page-main h3{
   margin: 20px 0;
   font-size: 21px;
+}
+
+.page-main .empty{
+  background: url('/assets/img/empty-bg.png');
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  display: flex;
+  align-items: start;
+  justify-content: left;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 15px;
+}
+
+.page-main .empty h2{
+  font-size: 20px;
+  font-weight: bold;
+  color: #e0837f;
 }
 
 .page-main #forecast-container{

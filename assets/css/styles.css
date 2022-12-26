@@ -42,6 +42,7 @@ body {
   text-align: center;
   font-size: 32px;
   font-weight: 600;
+  color: var(--secondary-color);
 }
 
 
@@ -62,7 +63,7 @@ body {
   background: #f7f8ff;
   padding: 5px 12px;
   border-radius: 10px;
-  color: #9f9f9f;
+  color: #3d3d3d;
   font-size: 14px;
 }
 
@@ -71,7 +72,7 @@ body {
 }
 
 .page-leftbar #submit-city{
-  background: var(--main-color);
+  background: #ff0000a1;
   padding: 6px 7px;
   border-radius: 10px;
   font-size: 12px;
@@ -162,6 +163,20 @@ body {
 
 .page-footer {
   grid-area: footer;
+}
+
+.page-footer .content{
+  display: flex;
+  align-items: end;
+  font-size: 12px;
+  background: url(https://avatars.githubusercontent.com/u/29736331?v=4);
+  background-repeat: no-repeat;
+  background-size: 60px;
+  background-position: 0 bottom;
+}
+
+.page-footer .content p{
+  margin-left: 50px;
 }
 
 .content {

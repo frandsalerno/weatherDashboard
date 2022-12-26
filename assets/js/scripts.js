@@ -13,6 +13,7 @@ var forecastWrapper = $('#forecast-container');
 
 var searchHistory = $('.search-history');
 var localSearches = [];
+var cityListed = $('.city-explored');
 
 var city = '';
 var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -22,21 +23,43 @@ var todayCity = $('.todays-weather h2');
 
 var emptyContent = $('.empty');
 
-var contentWeather = $('#content-weather')
+var contentWeather = $('#content-weather');
+
+//Get local IP and location with external API
+
+var localCity = '';
+
+function json(url) {
+    return fetch(url).then(function(res) {
+      return res.json();
+    });
+  }
+  
+var apiKeyIP = 'be05c2ac1abfca28d8c91e722892ef960cdcf09eec575743b6f65c18';
+
 
 if (JSON.parse(localStorage.getItem('cities')) != null) {
     localSearches = JSON.parse(localStorage.getItem('cities'));
     $(localSearches).each(function(i, city){
         searchHistory.append(`
-        <li class="city-explored">
-        ${city}
-        </li>
+        <li class="city-explored">${city}</li>
         `)
     });
-
+    // emptyContent.addClass('hide');
     weatherDashboard(localSearches[localSearches.length-1]);
+}else{
+    json(`https://api.ipdata.co?api-key=${apiKeyIP}`).then(data => {
+        localCity = data.city;
+        weatherDashboard(localCity);
+        console.log(localCity);
+    });
 }
 
+searchHistory.on( "click", function(event) {
+    weatherDashboard($(event.target).text());
+  });
+
+var cityListed = $('.city-explored');
 
 function weatherDashboard(city){
 
@@ -69,6 +92,7 @@ function weatherDashboard(city){
             // console.log(forecastData.list);
             fiveDaysForecast.push(forecastData.list);
             // console.log(fiveDaysForecast);
+            
 
             $(fiveDaysForecast[0]).each(function(i, day){
 
@@ -86,6 +110,7 @@ function weatherDashboard(city){
                     var forecastWind = day.wind.speed;
                     var forecastHumidity= day.main.humidity;
                 
+                    
 
                     forecastWrapper.append(`
                     <div class="daily-forecast">
@@ -106,6 +131,7 @@ function weatherDashboard(city){
         emptyContent.addClass('hide');
         contentWeather.removeClass('hide');
         searchInput.val('');
+        forecastWrapper.html('');
     });
 }
 
@@ -139,3 +165,5 @@ function init(){
 }
 
 init();
+
+

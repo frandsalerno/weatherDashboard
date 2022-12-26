@@ -20,6 +20,10 @@ var forecastURL = `https://api.openweathermap.org/data/2.5/forecast&appid=${apiK
 
 var todayCity = $('.todays-weather h2');
 
+var emptyContent = $('.empty');
+
+var contentWeather = $('#content-weather')
+
 if (JSON.parse(localStorage.getItem('cities')) != null) {
     localSearches = JSON.parse(localStorage.getItem('cities'));
     $(localSearches).each(function(i, city){
@@ -41,9 +45,9 @@ function weatherDashboard(city){
     .catch(function(event){
         if(event.status == 404){
             alert ('This City could not be found, please try another one');
-            
+            return;
         }
-        return;
+        
     })
 
     .then(function(currentData){
@@ -99,6 +103,9 @@ function weatherDashboard(city){
             });
 
         })
+        emptyContent.addClass('hide');
+        contentWeather.removeClass('hide');
+        searchInput.val('');
     });
 }
 
@@ -126,23 +133,6 @@ function fetchWeather(event){
     }
 }
 
-// $.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
-// .then(function(currentData){
-//     var lat= currentData.coord.lat;
-//     var lon= currentData.coord.lon;
-//     console.log(currentData);
-//     console.log(`
-//     --------CURRENT CONDITIONS---------
-//         Temp: ${Math.round(currentData.main.temp)} C°
-//         Wind: ${currentData.wind.speed} M/S
-//         Humidity: ${currentData.main.humidity}%
-//     `);
-
-//     $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`)
-//     .then(function(forecastData){
-//         console.log(forecastData);
-//     })
-// });
 
 function init(){
     searchInput.keydown(fetchWeather)

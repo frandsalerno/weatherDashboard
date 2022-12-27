@@ -51,7 +51,7 @@ body {
   background: rgb(152, 186, 254);
   background: linear-gradient(181deg, rgba(152, 186, 254, 1) 0%, rgba(126, 169, 254, 1) 100%);
   border-radius: 15px;
-  width: 250px;
+  width: 100%;
   color: #FFF;
 }
 
@@ -185,4 +185,61 @@ body {
   box-sizing: border-box;
   height: 100%;
   padding: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+  .daily-forecast {
+    padding: 20px;
+  }
+  .grid {
+    grid-template-columns: 180px auto;
+  }
+
+  .page-leftbar #submit-city{
+    margin-top: 10px;
+  }
+
+  .page-leftbar input {
+    padding: 5px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .grid {
+    grid-template-columns: 180px auto;
+  }
+  .daily-forecast {
+    padding: 10px;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .grid {
+    grid-template-columns:auto;
+    grid-template-areas:
+    'header header'
+    'leftbar leftbar'
+    'main main'
+    'footer footer';
+  }
+  .daily-forecast {
+    padding: 10px;
+  }
+  .page-leftbar{
+    min-height: 100px;
+    overflow: scroll;
+  }
+
+  .page-footer .content{
+    background: none;
+    padding: 0;
+
+  }
+
+  .page-footer .content p{
+    margin: 10px 0 0;
+  }
+  
 }

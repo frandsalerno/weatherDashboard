@@ -8,7 +8,6 @@ var todayTemp = $('.today-data .temp');
 var todayWind = $('.today-data .wind');
 var todayHumidity = $('.today-data .humidity');
 
-var fiveDaysForecast = [];
 var forecastWrapper = $('#forecast-container');
 
 var searchHistory = $('.search-history');
@@ -90,8 +89,10 @@ function weatherDashboard(city){
         $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
         .then(function(forecastData){
             // console.log(forecastData.list);
+            var fiveDaysForecast = [];
+
             fiveDaysForecast.push(forecastData.list);
-            // console.log(fiveDaysForecast);
+            console.log(fiveDaysForecast);
             
 
             $(fiveDaysForecast[0]).each(function(i, day){

@@ -1,6 +1,9 @@
+//Define all global variables
+
 var apiKey = '90f53e4b76bf31d91f16549c1f6c4b8f';
 
 var searchInput = $('#city-search');
+var submitCity = $('#submit-city');
 
 var todayIcon = $('.today-wicon');
 var todayDate = $('#today');
@@ -36,7 +39,7 @@ function json(url) {
   
 var apiKeyIP = 'be05c2ac1abfca28d8c91e722892ef960cdcf09eec575743b6f65c18';
 
-
+//Add city to localStorage
 if (JSON.parse(localStorage.getItem('cities')) != null) {
     localSearches = JSON.parse(localStorage.getItem('cities'));
     $(localSearches).each(function(i, city){
@@ -50,15 +53,42 @@ if (JSON.parse(localStorage.getItem('cities')) != null) {
     json(`https://api.ipdata.co?api-key=${apiKeyIP}`).then(data => {
         localCity = data.city;
         weatherDashboard(localCity);
-        console.log(localCity);
+        // console.log(localCity);
     });
 }
 
+//Add City to sidebar
+
+function searchSideBar(city){
+    if(!localSearches.includes(city)&& city != ''){
+        localSearches.push(city);
+        // console.log(localSearches);
+        searchHistory.append(`
+        <li class="city-explored">${city}</li>
+        `)
+    }
+
+    localStorage.setItem('cities', JSON.stringify(localSearches));
+}
+
+
+//update dashboard when users clicks on any city from the searched list
 searchHistory.on( "click", function(event) {
     weatherDashboard($(event.target).text());
-  });
+});
+
+//listen for the click on the search button
+submitCity.on( "click", function() {
+    forecastWrapper.html('');
+    city = searchInput.val().toUpperCase();
+    weatherDashboard(city);
+    searchSideBar(city);
+});
 
 var cityListed = $('.city-explored');
+
+
+//main function to retrieve the weather and forecast for the city
 
 function weatherDashboard(city){
 
@@ -92,7 +122,7 @@ function weatherDashboard(city){
             var fiveDaysForecast = [];
 
             fiveDaysForecast.push(forecastData.list);
-            console.log(fiveDaysForecast);
+            // console.log(fiveDaysForecast);
             
 
             $(fiveDaysForecast[0]).each(function(i, day){
@@ -134,29 +164,18 @@ function weatherDashboard(city){
         searchInput.val('');
         forecastWrapper.html('');
     });
+    
 }
+
+//listen for the "enter" key event
 
 function fetchWeather(event){
     var keyCode = event.keyCode;
-
-
-    if (keyCode === 13){
+    if (keyCode === 13){      
         forecastWrapper.html('');
-        city = searchInput.val().toUpperCase();
-        
+        city = searchInput.val().toUpperCase(); 
         weatherDashboard(city);
-        
-        if(!localSearches.includes(city)){
-            localSearches.push(city);
-            console.log(localSearches);
-            searchHistory.append(`
-            <li class="city-explored">${city}</li>
-            `)
-        }
-
-        localStorage.setItem('cities', JSON.stringify(localSearches));
-
-
+        searchSideBar(city)
     }
 }
 

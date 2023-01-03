@@ -30,6 +30,8 @@ body {
   height: 100%;
 }
 
+
+/* header styles */
 .page-header {
   grid-area: header;
   color: var(--main-color);
@@ -45,6 +47,7 @@ body {
   color: var(--secondary-color);
 }
 
+/* leftbar styles */
 
 .page-leftbar {
   grid-area: leftbar;
@@ -96,6 +99,8 @@ body {
 .page-leftbar .search-history li:hover{
   background: #6673b1;
 }
+
+/* main content styles */
 
 .page-main {
   grid-area: main;
@@ -186,6 +191,9 @@ body {
   height: 100%;
   padding: 10px;
 }
+
+
+/* Tablet and mobile styles */
 
 @media screen and (max-width: 1200px) {
   .daily-forecast {
